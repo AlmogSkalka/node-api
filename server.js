@@ -14,15 +14,17 @@ app.get("/blobing", (req, res) => {
   res.send("blobing something!");
   throw new Error("blobing get not working");
 });
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
 
 mongoose
   .connect(
-    `mongodb+srv://admin:<${process.env.mongodb_server_psw}>@cluster0.re7mxaa.mongodb.net/node-api?retryWrites=true&w=majority`
+    `mongodb+srv://admin:${process.env.mongodb_server_psw}@cluster0.re7mxaa.mongodb.net/node-api?retryWrites=true&w=majority`
   )
-  .then(() => console.log("Connected to mdb!"))
+  .then(() => {
+    console.log("Connected to mdb!");
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`);
+    });
+  })
   .catch((err) => {
     console.log("error: ", err);
   });
