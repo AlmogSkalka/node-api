@@ -20,6 +20,9 @@ app.listen(port, () => {
 
 mongoose
   .connect(
-    `mongodb+srv://admin:<${process.env.mongodb_server_psw}>@cluster0.re7mxaa.mongodb.net/?retryWrites=true&w=majority`
+    `mongodb+srv://admin:<${process.env.mongodb_server_psw}>@cluster0.re7mxaa.mongodb.net/node-api?retryWrites=true&w=majority`
   )
-  .then(() => console.log("Connected!"));
+  .then(() => console.log("Connected to mdb!"))
+  .catch((err) => {
+    console.log("error: ", err);
+  });
