@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+require("dotenv").config();
 
 const mongoose = require("mongoose");
-mongoose
-  .connect("mongodb://127.0.0.1:27017/test")
-  .then(() => console.log("Connected!"));
 
 //routes
 app.get("/", (req, res) => {
@@ -19,3 +17,9 @@ app.get("/blobing", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+mongoose
+  .connect(
+    `mongodb+srv://admin:<${process.env.mongodb_server_psw}>@cluster0.re7mxaa.mongodb.net/?retryWrites=true&w=majority`
+  )
+  .then(() => console.log("Connected!"));
